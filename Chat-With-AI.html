@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqua - Marine Species Information Assistant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0077b6;
+            --primary-light: #90e0ef;
+            --primary-dark: #03045e;
+            --secondary: #48cae4;
+            --accent: #00b4d8;
+            --text: #333;
+            --text-light: #777;
+            --background: #f8fbfe;
+            --card-bg: #ffffff;
+            --success: #4cc9f0;
+            --warning: #ffb703;
+            --danger: #e63946;
+            --shadow: 0 4px 12px rgba(0, 119, 182, 0.1);
+            --transition: all 0.3s ease;
+            --user-msg-bg: #e3f2fd;
+            --bot-msg-bg: #f0f4f8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background);
+            margin: 0;
+            padding: 0;
+            color: var(--text);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgb(35, 105, 110);
+            padding: 15px 20px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-light);
+        }
+
+        nav ul li a.active {
+            color: var(--primary-light);
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            padding: 20px;
+            background: rgba(0, 119, 182, 0.2);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            gap: 30px;
+        }
+
+        /* Chat Container */
+        .chat-container {
+            flex: 2;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 70vh;
+        }
+
+        .chat-header {
+            padding: 20px;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .bot-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .chat-header-content h2 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .chat-header-content p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            margin-bottom: 5px;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background-color: var(--user-msg-bg);
+            border-bottom-right-radius: 4px;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background-color: var(--bot-msg-bg);
+            border-bottom-left-radius: 4px;
+        }
+
+        .message-content {
+            margin-bottom: 5px;
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            text-align: right;
+            color: var(--text-light);
+        }
+
+        .chat-input {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .chat-input input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 119, 182, 0.2);
+        }
+
+        .chat-input button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .chat-input button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Species Info Panel */
+        .species-panel {
+            flex: 1;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .species-panel h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .species-info {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .species-card {
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+            transition: var(--transition);
+        }
+
+        .species-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .species-card p {
+            margin-bottom: 15px;
+        }
+
+        .species-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .detail-item {
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            margin-right: 5px;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            margin-top: 20px;
+        }
+
+        .quick-actions h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .action-btn {
+            background-color: var(--primary-light);
+            border: none;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .action-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgb(35, 105, 110);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-light);
+        }
+
+        .footer-section p {
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--primary-light);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .chat-container, .species-panel {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .message {
+                max-width: 90%;
+            }
+            
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .species-details {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        
+        .no-species-selected {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+        }
+        
+        .no-species-selected i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--primary-light);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html"><i class="fas fa-water"></i><span> MarineInsights</span></a>
+            </div>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="dashboard.html"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
+                <li><a href="species.html"><i class="fas fa-fish"></i> Species</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="Chat-With-AI.html" class="active"><i class="fas fa-robot"></i> Aqua - Assistance</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Aqua - Assistance</h1>
+            <p>Get instant information about marine species through our AI-powered assistant</p>
+        </div>
+    </section>
+
+    <div class="main-content">
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="bot-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="chat-header-content">
+                    <h2>Aqua - Assistance</h2>
+                    <p>AI-powered marine species assistant</p>
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        Hello! I'm Aqua - Assistance, your assistant for marine species information. You can ask me about any marine species, their characteristics, conservation status, and more. How can I help you today?
+                    </div>
+                    <div class="message-time">12:00 PM</div>
+                </div>
+                
+                <div class="message user-message">
+                    <div class="message-content">
+                        Tell me about humpback whales
+                    </div>
+                    <div class="message-time">12:02 PM</div>
+                </div>
+                
+                <div class="message bot-message">
+                    <div class="message-content">
+                        <strong>Humpback Whale (Megaptera novaeangliae)</strong><br><br>
+                        Humpback whales are known for their magical songs, which travel for great distances through the world's oceans. These sequences of moans, howls, cries, and other noises are quite complex and often continue for hours on end.<br><br>
+                        <strong>Size:</strong> 13-16 meters<br>
+                        <strong>Weight:</strong> 25-30 tons<br>
+                        <strong>Diet:</strong> Krill and small fish<br>
+                        <strong>Conservation Status:</strong> Endangered<br>
+                        <strong>Population Trend:</strong> Increasing
+                    </div>
+                    <div class="message-time">12:02 PM</div>
+                </div>
+            </div>
+            
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Type your message here...">
+                <button id="sendMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="species-panel">
+            <h2>Species Information</h2>
+            <div class="species-info" id="speciesInfo">
+                <div class="no-species-selected">
+                    <i class="fas fa-fish"></i>
+                    <h3>No species selected</h3>
+                    <p>Ask about a marine species or click on a quick inquiry button to see detailed information here.</p>
+                </div>
+            </div>
+            
+            <div class="quick-actions">
+                <h3>Quick Inquiries</h3>
+                <div class="action-buttons">
+                    <button class="action-btn" data-species="clownfish">Clownfish</button>
+                    <button class="action-btn" data-species="green sea turtle">Green Sea Turtle</button>
+                    <button class="action-btn" data-species="coral">Coral</button>
+                    <button class="action-btn" data-species="great white shark">Great White Shark</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About MarineInsights</h3>
+                <p>We are dedicated to providing accurate, real-time data on marine ecosystems to support conservation efforts and research initiatives worldwide.</p>
+                <p>Our mission is to make marine biodiversity data accessible to everyone.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="dashboard.html"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
+                    <li><a href="species.html"><i class="fas fa-fish"></i> Species Database</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="Chat-With-AI.html"><i class="fas fa-robot"></i> Aqua - Assistance</a></li>
+                </ul>
+            </div>
+            <!-- <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Marine Research Institute, Coastal Road, Mumbai, India</p>
+                <p><i class="fas fa-envelope"></i> info@marineinsights.org</p>
+                <p><i class="fas fa-phone"></i> +91 (555) 123-4567</p>
+            </div> -->
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Marine Insights Project | <a href="#" style="color:#90e0ef; text-decoration:none;">Privacy Policy</a> | <a href="#" style="color:#90e0ef; text-decoration:none;">Terms of Use</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Species database
+        const speciesDatabase = {
+            'humpback whale': {
+                name: 'Humpback Whale',
+                scientificName: 'Megaptera novaeangliae',
+                category: 'Mammal',
+                region: 'Global oceans',
+                status: 'Endangered',
+                population: 'Increasing',
+                size: '13-16 meters',
+                weight: '25-30 tons',
+                diet: 'Krill, small fish',
+                description: 'Humpback whales are known for their magical songs, which travel for great distances through the world\'s oceans. These sequences of moans, howls, cries, and other noises are quite complex and often continue for hours on end.',
+                icon: 'fas fa-water'
+            },
+            'clownfish': {
+                name: 'Clownfish',
+                scientificName: 'Amphiprioninae',
+                category: 'Fish',
+                region: 'Indian Ocean, Pacific Ocean',
+                status: 'Least Concern',
+                population: 'Stable',
+                size: '10-18 cm',
+                weight: '150-200 g',
+                diet: 'Algae, zooplankton',
+                description: 'Clownfish are social fish, living in groups that are led by one dominant female. All clownfish are born male and can change sex to become the dominant female of the group.',
+                icon: 'fas fa-fish'
+            },
+            'green sea turtle': {
+                name: 'Green Sea Turtle',
+                scientificName: 'Chelonia mydas',
+                category: 'Reptile',
+                region: 'Atlantic Ocean',
+                status: 'Endangered',
+                population: 'Decreasing',
+                size: '1-1.5 meters',
+                weight: '150-200 kg',
+                diet: 'Seagrasses, algae',
+                description: 'The green sea turtle is one of the largest sea turtles and the only herbivore among the different species. They are named for the green color of their fat, not their shells.',
+                icon: 'fas fa-times-circle'
+            },
+            'coral': {
+                name: 'Coral',
+                scientificName: 'Anthozoa',
+                category: 'Invertebrate',
+                region: 'Pacific Ocean',
+                status: 'Vulnerable',
+                population: 'Decreasing',
+                size: 'Colony: up to meters',
+                weight: 'Varies',
+                diet: 'Plankton, sunlight',
+                description: 'Corals are marine invertebrates within the class Anthozoa of the phylum Cnidaria. They typically form compact colonies of many identical individual polyps.',
+                icon: 'fas fa-certificate'
+            },
+            'great white shark': {
+                name: 'Great White Shark',
+                scientificName: 'Carcharodon carcharias',
+                category: 'Fish',
+                region: 'Pacific Ocean',
+                status: 'Vulnerable',
+                population: 'Decreasing',
+                size: '4-6 meters',
+                weight: '1,100-2,200 kg',
+                diet: 'Seals, sea lions, fish',
+                description: 'The great white shark is the world\'s largest known predatory fish. They have about 300 teeth, arranged in several rows, and are known for their powerful bite.',
+                icon: 'fas fa-fish'
+            },
+            'jellyfish': {
+                name: 'Jellyfish',
+                scientificName: 'Medusozoa',
+                category: 'Invertebrate',
+                region: 'Global oceans',
+                status: 'Least Concern',
+                population: 'Increasing',
+                size: 'Varies by species',
+                weight: 'Varies',
+                diet: 'Plankton, small fish',
+                description: 'Jellyfish have been around for more than 500 million years, making them the oldest multi-organ animal. They are composed of more than 95% water.',
+                icon: 'fas fa-circle'
+            },
+            'dolphin': {
+                name: 'Dolphin',
+                scientificName: 'Delphinidae',
+                category: 'Mammal',
+                region: 'Global oceans',
+                status: 'Least Concern',
+                population: 'Stable',
+                size: '2-4 meters',
+                weight: '100-300 kg',
+                diet: 'Fish, squid',
+                description: 'Dolphins are highly intelligent marine mammals known for their playful behavior and communication skills. They use echolocation to navigate and hunt in dark or murky water.',
+                icon: 'fas fa-water'
+            },
+            'seahorse': {
+                name: 'Seahorse',
+                scientificName: 'Hippocampus',
+                category: 'Fish',
+                region: 'Indian Ocean',
+                status: 'Vulnerable',
+                population: 'Decreasing',
+                size: '1.5-35 cm',
+                weight: 'Varies',
+                diet: 'Plankton, small crustaceans',
+                description: 'Seahorses are unique in that the male gives birth. They are poor swimmers but can change color to blend in with their environment and avoid predators.',
+                icon: 'fas fa-horse-head'
+            }
+        };
+
+        // DOM elements
+        const chatMessages = document.getElementById('chatMessages');
+        const userInput = document.getElementById('userInput');
+        const sendButton = document.getElementById('sendMessage');
+        const actionButtons = document.querySelectorAll('.action-btn');
+        const speciesInfo = document.getElementById('speciesInfo');
+
+        // Initialize the chat
+        function initChat() {
+            setupEventListeners();
+        }
+
+        // Set up event listeners
+        function setupEventListeners() {
+            sendButton.addEventListener('click', handleUserMessage);
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleUserMessage();
+                }
+            });
+            
+            actionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const species = this.dataset.species;
+                    userInput.value = `Tell me about ${species}`;
+                    handleUserMessage();
+                });
+            });
+        }
+
+        // Handle user message
+        function handleUserMessage() {
+            const message = userInput.value.trim();
+            if (message === '') return;
+            
+            // Add user message to chat
+            addMessage(message, 'user');
+            
+            // Clear input
+            userInput.value = '';
+            
+            // Process message and generate response
+            setTimeout(() => {
+                const response = generateResponse(message);
+                addMessage(response, 'bot');
+                
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
+        }
+
+        // Add message to chat
+        function addMessage(content, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            
+            const messageContent = document.createElement('div');
+            messageContent.className = 'message-content';
+            messageContent.innerHTML = content;
+            
+            const messageTime = document.createElement('div');
+            messageTime.className = 'message-time';
+            messageTime.textContent = getCurrentTime();
+            
+            messageDiv.appendChild(messageContent);
+            messageDiv.appendChild(messageTime);
+            
+            chatMessages.appendChild(messageDiv);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Update species panel if a species was mentioned
+            if (sender === 'bot') {
+                updateSpeciesPanel(content);
+            }
+        }
+
+        // Generate response based on user message
+        function generateResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            // Check if message contains a species name
+            for (const speciesName in speciesDatabase) {
+                if (lowerMessage.includes(speciesName)) {
+                    const species = speciesDatabase[speciesName];
+                    return formatSpeciesResponse(species);
+                }
+            }
+            
+            // Default responses
+            if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
+                return "Hello! I'm Aqua - Assistance. You can ask me about marine species like humpback whales, clownfish, green sea turtles, corals, or great white sharks.";
+            } else if (lowerMessage.includes('help')) {
+                return "I can provide information about various marine species. Just ask me about a specific species like 'Tell me about clownfish' or 'What do you know about coral?'";
+            } else if (lowerMessage.includes('thank')) {
+                return "You're welcome! Is there anything else you'd like to know about marine species?";
+            } else {
+                return "I'm not sure I understand. I can provide information about marine species. Try asking about a specific species like humpback whales, clownfish, or green sea turtles.";
+            }
+        }
+
+        // Format species response
+        function formatSpeciesResponse(species) {
+            return `
+                <strong>${species.name} (${species.scientificName})</strong><br><br>
+                ${species.description}<br><br>
+                <strong>Category:</strong> ${species.category}<br>
+                <strong>Region:</strong> ${species.region}<br>
+                <strong>Size:</strong> ${species.size}<br>
+                <strong>Weight:</strong> ${species.weight}<br>
+                <strong>Diet:</strong> ${species.diet}<br>
+                <strong>Conservation Status:</strong> ${species.status}<br>
+                <strong>Population Trend:</strong> ${species.population}
+            `;
+        }
+
+        // Update species panel with information
+        function updateSpeciesPanel(message) {
+            // Check if message contains a species name
+            for (const speciesName in speciesDatabase) {
+                if (message.toLowerCase().includes(speciesName)) {
+                    const species = speciesDatabase[speciesName];
+                    displaySpeciesInfo(species);
+                    return;
+                }
+            }
+        }
+
+        // Display species information in the panel
+        function displaySpeciesInfo(species) {
+            const statusClass = `status-${species.status.replace(' ', '-')}`;
+            
+            speciesInfo.innerHTML = `
+                <div class="species-card">
+                    <h3>${species.name}</h3>
+                    <p>${species.description}</p>
+                    <div class="species-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Scientific Name:</span>
+                            <span class="detail-value">${species.scientificName}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Category:</span>
+                            <span class="detail-value">${species.category}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Region:</span>
+                            <span class="detail-value">${species.region}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Conservation Status:</span>
+                            <span class="detail-value">${species.status}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Size:</span>
+                            <span class="detail-value">${species.size}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Weight:</span>
+                            <span class="detail-value">${species.weight}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Diet:</span>
+                            <span class="detail-value">${species.diet}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Population Trend:</span>
+                            <span class="detail-value">${species.population}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Get current time for message timestamp
+        function getCurrentTime() {
+            const now = new Date();
+            return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+
+        // Initialize the chat when page loads
+        document.addEventListener('DOMContentLoaded', initChat);
+    </script>
+</body>
+</html>

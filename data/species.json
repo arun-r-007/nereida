@@ -1,0 +1,7 @@
+[
+    { "name": "Sardinella longiceps", "type": "Fish", "region": "Indian Ocean", "abundance": 1500 },
+    { "name": "Thunnus albacares", "type": "Fish", "region": "Pacific Ocean", "abundance": 800 },
+    { "name": "Penaeus monodon", "type": "Shrimp", "region": "Bay of Bengal", "abundance": 300 },
+    { "name": "Epinephelus coioides", "type": "Fish", "region": "Indian Ocean", "abundance": 600 },
+    { "name": "Rastrelliger kanagurta", "type": "Fish", "region": "Arabian Sea", "abundance": 1100 }
+]

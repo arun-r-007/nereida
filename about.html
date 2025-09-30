@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Marine Insights</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary: #0077b6;
+            --primary-light: #90e0ef;
+            --primary-dark: #03045e;
+            --secondary: #48cae4;
+            --accent: #00b4d8;
+            --text: #333;
+            --text-light: #777;
+            --background: #f8fbfe;
+            --card-bg: #ffffff;
+            --success: #4cc9f0;
+            --warning: #ffb703;
+            --danger: #e63946;
+            --shadow: 0 4px 12px rgba(0, 119, 182, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background);
+            margin: 0;
+            padding: 0;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgb(35, 105, 110);
+            padding: 15px 20px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-light);
+        }
+
+        nav ul li a.active {
+            color: var(--primary-light);
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.1' d='M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,218.7C672,224,768,160,864,128C960,96,1056,96,1152,117.3C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E"); */
+            /* background-size: cover; */
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            /* padding: 20px; */
+            background: rgba(0, 119, 182, 0.2);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        a{
+            text-decoration: None;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Content Sections */
+        .content {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* Mission Section */
+        .mission {
+            background-color: var(--primary-light);
+            padding: 80px 0;
+            margin: 80px 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .mission::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%230077b6' fill-opacity='0.05' d='M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,218.7C672,224,768,160,864,128C960,96,1056,96,1152,117.3C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .mission-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            text-align: center;
+            color: var(--primary-dark);
+        }
+
+        .mission-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+        }
+
+        .mission-content p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-img {
+            height: 200px;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-dark);
+            font-size: 3rem;
+        }
+
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .card p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 60px auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary-light);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: white;
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            top: 65px;
+            right: -16px;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -17px;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        /* Team Section */
+        .team {
+            background-color: rgb(34, 78, 145);
+            color: white;
+            padding: 80px 0;
+            margin: 80px 0;
+            border-radius: 20px;
+        }
+
+        .team .section-header h2 {
+            color: white;
+        }
+
+        .team .section-header p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .team-member:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .team-member-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-dark);
+            font-size: 2.5rem;
+        }
+
+        .team-member h3 {
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .team-member-role {
+            color: var(--primary-light);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        /* Partners */
+        .partners {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            align-items: center;
+        }
+
+        .partner {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 120px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .partner:hover {
+            transform: scale(1.05);
+        }
+
+        .partner-placeholder {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgb(35, 105, 110);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-light);
+        }
+
+        .footer-section p {
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--primary-light);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 18px;
+            }
+            
+            .timeline-item:nth-child(even)::after {
+                left: 18px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 20px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .card-img {
+                height: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html"><i class="fas fa-water"></i><span> MarineInsights</span></a>
+            </div>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="dashboard.html"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
+                <li><a href="species.html"><i class="fas fa-fish"></i> Species</a></li>
+                <li><a href="about.html" class="active"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="Chat-With-AI.html" ><i class="fas fas fa-robot"></i> Aqua - Assistance</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>About This Project</h1>
+            <p>Learn about our mission to protect marine ecosystems through data and technology</p>
+        </div>
+    </section>
+
+    <div class="content">
+        <section class="section">
+            <div class="section-header">
+                <h2>Our Mission</h2>
+                <p>Oceans are vital for life on Earth. They regulate climate, support marine biodiversity, and provide food and livelihood to millions.</p>
+            </div>
+
+            <div class="mission">
+                <div class="mission-content">
+                    <h2>Creating an Accessible Platform</h2>
+                    <p>This project aims to create an accessible platform that helps researchers, policymakers, and communities understand marine ecosystems better.</p>
+                    <div class="cards">
+                        <div class="card">
+                            <div class="card-img">
+                                <!-- <i class="fas fa-database"></i> -->
+                        <img src="public/images/Data-Integration.jpg" alt="Biodiversity Data Visualization" style="width:100%; height:100%; object-fit:cover;">
+
+                            </div>
+                            <div class="card-content">
+                                <h3>Data Integration</h3>
+                                <p>Integrate biological, taxonomic, and oceanographic data in a unified format.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-img">
+                                <!-- <i class="fas fa-search"></i> -->
+                        <img src="public/images/Exploration-Tools.jpg" alt="Biodiversity Data Visualization" style="width:100%; height:100%; object-fit:cover;">
+
+                            </div>
+                            <div class="card-content">
+                                <h3>Exploration Tools</h3>
+                                <p>Provide tools for exploring species diversity and population trends.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-img">
+                                <!-- <i class="fas fa-chart-bar"></i> -->
+                        <img src="public/images/Visual-Dashboards.jpg" alt="Biodiversity Data Visualization" style="width:100%; height:100%; object-fit:cover;">
+
+                            </div>
+                            <div class="card-content">
+                                <h3>Visual Dashboards</h3>
+                                <p>Use visual dashboards to highlight key patterns and insights.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>Why It Matters</h2>
+                <p>Marine biodiversity is under threat from climate change, pollution, and overfishing.</p>
+            </div>
+
+            <div class="cards">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="public/images/Informed-Decision-Making.jpg" alt="Biodiversity Data Visualization" style="width:100%; height:100%; object-fit:cover;">
+                        
+                    </div>
+                    <div class="card-content">
+                        <h3>Informed Decision-Making</h3>
+                        <p>By making data easy to access and understand, this platform supports informed decision-making that protects ocean health and secures a sustainable future.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="public/images/Empowering-Conservation.jpg" alt="Biodiversity Data Visualization" style="width:100%; height:100%; object-fit:cover;">
+                        
+                    </div>
+                    <div class="card-content">
+                        <h3>Empowering Conservation</h3>
+                        <p>Empower sustainable management and conservation efforts through accessible data and tools.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h2>Project Goals</h2>
+                <p>Our platform aims to unify marine data, making it accessible and actionable</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Data Unification</h3>
+                        <p>Integrate diverse marine datasets into a single, accessible platform for researchers and policymakers.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Trend Visualization</h3>
+                        <p>Highlight patterns and insights through interactive visualizations and dashboards.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Sustainable Management</h3>
+                        <p>Guide sustainable ocean management through data-driven insights and recommendations.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Collaboration Enhancement</h3>
+                        <p>Improve collaboration between scientists, policymakers, and conservation organizations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="section">
+    <div class="section-header">
+        <h2>Understanding Marine Life</h2>
+        <p>Discover how cutting-edge science is helping us track and protect marine biodiversity.</p>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <div class="card-img">
+                        <img src="public/images/Threats-to-Marine-Life.jpg" alt="Biodiversity Data Visualization" style="width:100%; height:100%; object-fit:cover;">
+                
+            </div>
+            <div class="card-content">
+                <h3>Threats to Marine Life</h3>
+                <p>Life in the sea is threatened by global warming, ocean acidification, pollution, and over-harvesting of marine resources. Monitoring these changes is essential for sustainable conservation efforts.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img">
+                        <img src="public/images/Environmental-DNA-(eDNA).jpg" alt="Biodiversity Data Visualization" style="width:100%; height:100%; object-fit:cover;">
+                
+            </div>
+            <div class="card-content">
+                <h3>Environmental DNA (eDNA)</h3>
+                <p>All forms of marine life leave traces of DNA in seawater. By analyzing these eDNA samples, scientists can detect species from microbes to mammals without direct observation.</p>
+            </div>
+        </div>
+    </div>
+<br>
+    <div class="section-header">
+        <h2>MBON and MBARI Collaboration</h2>
+        <p>Innovative methods are transforming how we study marine ecosystems at a global scale.</p>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <div class="card-img">
+                        <img src="public/images/Marine-Biodiversity-Observation-Network-(MBON).jpg" alt="Biodiversity Data Visualization" style="width:100%; height:100%; object-fit:cover;">
+                
+            </div>
+            <div class="card-content">
+                <h3>Marine Biodiversity Observation Network (MBON)</h3>
+                <p>MBON, led by MBARI and collaborators, uses the Monterey Bay National Marine Sanctuary as a model to improve biodiversity assessments and marine data sharing.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img">
+                        <img src="public/images/Autonomous-Technologies.jpg" alt="Biodiversity Data Visualization" style="width:100%; height:100%; object-fit:cover;">
+                
+            </div>
+            <div class="card-content">
+                <h3>Autonomous Technologies</h3>
+                <p>Using autonomous vehicles and advanced sampling techniques, scientists can now observe marine ecosystems at unprecedented scales, helping protect marine life more effectively.</p>
+            </div>
+        </div>
+    </div>
+<br>
+    <div class="section-header">
+        <h2>Environmental DNA (eDNA) – Visual Insight</h2>
+        <p>Below are examples of how eDNA analysis is transforming marine research:</p>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <img src="public/images/dna1.jpg" alt="eDNA Sample Illustration 1" style="width:100%; height:100%; object-fit:cover;">
+            <div class="card-content">
+                <h3>eDNA Sampling Process</h3>
+                <p>Seawater is collected and filtered to capture traces of DNA left by marine organisms, enabling researchers to identify species present in the area.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="public/images/dna2.jpg" alt="eDNA Sample Illustration 2" style="width:100%; height:100%; object-fit:cover;">
+            <div class="card-content">
+                <h3>Marine Biodiversity Insights</h3>
+                <p>Analyzing eDNA allows scientists to detect and monitor species diversity and abundance in real-time, even in remote or deep-sea areas.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        <section class="section">
+            <div class="section-header">
+                <h2>Expected Outcomes</h2>
+                <p>The impact we aim to achieve with our marine data platform</p>
+            </div>
+
+            <div class="cards">
+                <div class="card">
+                    <div class="card-img">
+                        <!-- <i class="fas fa-brain"></i> -->
+                        <img src="public/images/Better-Understanding.jpg" alt="Biodiversity Data Visualization" style="width:100%; height:100%; object-fit:cover;">
+
+                    </div>
+                    <div class="card-content">
+                        <h3>Better Understanding</h3>
+
+                        <p>Improved comprehension of marine biodiversity patterns and ecosystem dynamics.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <!-- <i class="fas fa-tasks"></i> -->
+                        <img src="public/images/Enhanced-Decision-Making.jpg" alt="Biodiversity Data Visualization" style="width:100%; height:100%; object-fit:cover;">
+
+                    </div>
+                    <div class="card-content">
+                        <h3>Enhanced Decision-Making</h3>
+                        <p>Data-driven decisions for conservation and fisheries management.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <!-- <i class="fas fa-users"></i> -->
+                        <img src="public/images/Improved-Collaboration.jpg" alt="Biodiversity Data Visualization" style="width:100%; height:100%; object-fit:cover;">
+
+                    </div>
+                    <div class="card-content">
+                        <h3>Improved Collaboration</h3>
+                        <p>Stronger partnerships between scientists, policymakers, and communities.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <!-- <i class="fas fa-graduation-cap"></i> -->
+                        <img src="public/images/Public-Awareness.jpg" alt="Biodiversity Data Visualization" style="width:100%; height:100%; object-fit:cover;">
+
+                    </div>
+                    <div class="card-content">
+                        <h3>Public Awareness</h3>
+                        <p>Increased education and awareness through open data tools.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="public/images/db.jpg" alt="Biodiversity Data Visualization" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                    <div class="card-content">
+                        <h3>Global Biodiversity Insights</h3>
+                        <p>Empowering conservation through advanced data analytics, species tracking, and ecosystem monitoring.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h2>Who Benefits?</h2>
+                <p>Our platform serves diverse stakeholders interested in marine conservation</p>
+            </div>
+
+            <div class="cards">
+                <div class="card">
+                    <div class="card-img">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Researchers</h3>
+                        <p>Access to integrated marine data for scientific studies and analysis.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Environmental Organizations</h3>
+                        <p>Data to support conservation initiatives and advocacy efforts.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Governments</h3>
+                        <p>Insights for policy development and marine resource management.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Fishermen Communities</h3>
+                        <p>Information for sustainable fishing practices and livelihood protection.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Conservation Advocates</h3>
+                        <p>Data to support ocean protection initiatives and public awareness campaigns.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h2>Future Plans</h2>
+                <p>Our roadmap for expanding and enhancing the platform</p>
+            </div>
+
+            <div class="cards">
+                <div class="card">
+                    <div class="card-img">
+                        <i class="fas fa-satellite"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Satellite Data Integration</h3>
+                        <p>Incorporate satellite data for comprehensive marine ecosystem monitoring.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Community Reporting</h3>
+                        <p>Develop tools for community-driven data collection and reporting.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="team">
+            <div class="content">
+                <div class="section-header">
+                    <h2>Our Partners</h2>
+                    <p>Organizations that support our mission and collaborate with us</p>
+                </div>
+
+                <div class="partners">
+                    <div class="partner">
+                        <div class="partner-placeholder">Research Institute</div>
+                    </div>
+                    <div class="partner">
+                        <div class="partner-placeholder">Conservation NGO</div>
+                    </div>
+                    <div class="partner">
+                        <div class="partner-placeholder">Government Agency</div>
+                    </div>
+                    <div class="partner">
+                        <div class="partner-placeholder">University</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    
+<footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About MarineInsights</h3>
+                <p>We are dedicated to providing accurate, real-time data on marine ecosystems to support conservation efforts and research initiatives worldwide.</p>
+                <p>Our mission is to make marine biodiversity data accessible to everyone.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="dashboard.html"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
+                    <li><a href="species.html"><i class="fas fa-fish"></i> Species Database</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="Chat-With-AI.html"><i class="fas fa-robot"></i>  Aqua - Assistance</a></li>
+
+                </ul>
+            </div>
+            <!-- <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Marine Research Institute, Coastal Road, Mumbai, India</p>
+                <p><i class="fas fa-envelope"></i> info@marineinsights.org</p>
+                <p><i class="fas fa-phone"></i> +91 (555) 123-4567</p>
+            </div> -->
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Marine Insights Project | <a href="#" style="color:#90e0ef; text-decoration:none;">Privacy Policy</a> | <a href="#" style="color:#90e0ef; text-decoration:none;">Terms of Use</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Animation for timeline items
+        document.addEventListener('DOMContentLoaded', function() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            const options = {
+                threshold: 0.5
+            };
+            
+            const observer = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateX(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, options);
+            
+            // Set initial state for animation
+            timelineItems.forEach(item => {
+                item.style.opacity = 0;
+                if (item.classList.contains('timeline-item:nth-child(odd)') || parseInt(item.style.order) % 2 === 0) {
+                    item.style.transform = 'translateX(-50px)';
+                } else {
+                    item.style.transform = 'translateX(50px)';
+                }
+                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>
