@@ -252,4 +252,3 @@ By combining:
 - Interactive Dashboards  
 
 We empower researchers, policymakers, and communities to make informed decisions for sustainable marine ecosystems.
-```
