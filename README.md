@@ -1,4 +1,3 @@
-```markdown
 # 🌊 Nereida – Clarity from Complexity  
 ## AI-Driven Unified Data Platform for Oceanographic, Fisheries & Molecular Biodiversity Insights
 
