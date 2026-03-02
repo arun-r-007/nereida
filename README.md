@@ -1,4 +1,4 @@
-# 🌊 Nereida – Clarity from Complexity  
+# Nereida – Clarity from Complexity  
 ## AI-Driven Unified Data Platform for Oceanographic, Fisheries & Molecular Biodiversity Insights
 
 Nereida is an AI-powered unified marine data platform designed to integrate fragmented oceanographic, fisheries, and molecular biodiversity data into a single intelligent ecosystem.
@@ -13,23 +13,23 @@ Marine data is often scattered across:
 
 Nereida transforms this fragmented data into:
 
-- ✅ Actionable insights  
-- ✅ Predictive biodiversity models  
-- ✅ Sustainable fisheries intelligence  
-- ✅ Conservation decision-support tools  
+- Actionable insights  
+- Predictive biodiversity models  
+- Sustainable fisheries intelligence  
+- Conservation decision-support tools  
 
 ---
 
-# 🎯 Problem We Solve
+# Problem We Solve
 
-## 🔴 Challenges
+## Challenges
 
 - Heterogeneous marine datasets (multiple formats & quality levels)  
 - Species misclassification & AI bias  
 - Fragmented biodiversity research pipelines  
 - Lack of unified decision-making tools  
 
-## 🟢 Our Solution
+## Our Solution
 
 - Unified marine data integration pipeline  
 - AI-powered species detection & forecasting  
@@ -39,21 +39,21 @@ Nereida transforms this fragmented data into:
 
 ---
 
-# 🧠 Key Features
+# Key Features
 
-## 🔹 Automated Data Gathering
+## Automated Data Gathering
 
 - Collects fish species data  
 - Ocean parameters (temperature, salinity, pH)  
 - Biodiversity indices & eDNA samples  
 
-## 🔹 Data Refinement & Standardization
+## Data Refinement & Standardization
 
 - Removes duplicates & missing values  
 - Enforces metadata standards  
 - Converts heterogeneous datasets into unified schema  
 
-## 🔹 AI-Powered Biodiversity Modeling
+## AI-Powered Biodiversity Modeling
 
 - Predicts species distribution  
 - Forecasts population density  
@@ -65,13 +65,13 @@ Nereida transforms this fragmented data into:
 - Flags unknown genetic sequences  
 - Creates research pipeline for scientists  
 
-## 🔹 Dual AI Intelligence
+## Dual AI Intelligence
 
 - Species identification (eDNA, images, sensors)  
 - Otolith shape analysis  
 - Population trend forecasting  
 
-## 🔹 Decision-Support Dashboard
+## Decision-Support Dashboard
 
 - Heatmaps  
 - Density maps  
@@ -81,9 +81,9 @@ Nereida transforms this fragmented data into:
 
 ---
 
-# 🏗️ Technical Architecture
+# Technical Architecture
 
-## 🔄 Platform Workflow
+## Platform Workflow
 
 1. Data Sourcing  
 2. Data Cleaning & Standardization  
@@ -94,52 +94,52 @@ Nereida transforms this fragmented data into:
 
 ---
 
-# 🛠️ Tech Stack
+# Tech Stack
 
-## 💻 Programming & Data Processing
+## Programming & Data Processing
 
 - Python  
 - Pandas  
 
-## 🔧 Backend
+## Backend
 
 - Node.js  
 - Express.js  
 - FastAPI  
 
-## 🗄️ Database & Storage
+## Database & Storage
 
 - MongoDB  
 - PostgreSQL  
 - Amazon S3  
 
-## 🤖 AI & Analytics
+## AI & Analytics
 
 - TensorFlow  
 - PyTorch  
 - OpenCV  
 
-## 📊 Visualization
+## Visualization
 
 - React.js  
 - Chart.js  
 - Leaflet.js  
 
-## 🔐 Authentication
+## Authentication
 
 - Firebase Authentication  
 
 ---
 
-# 🌍 Feasibility
+# Feasibility
 
-## ✅ Technical Feasibility
+## Technical Feasibility
 
 - Cloud-ready modular architecture  
 - Scalable large dataset handling  
 - Continuous AI model training & validation  
 
-## ✅ Operational Feasibility
+## Operational Feasibility
 
 Unified platform for:
 
@@ -149,7 +149,7 @@ Unified platform for:
 
 - Automated ingestion & real-time updates  
 
-## ✅ Environmental & Social Feasibility
+## Environmental & Social Feasibility
 
 - Supports India’s Blue Economy  
 - Strengthens climate resilience  
@@ -157,20 +157,20 @@ Unified platform for:
 
 ---
 
-# 📈 Impact & Benefits
+# Impact & Benefits
 
-## 🧪 Marine Scientists
+## Marine Scientists
 
 - Unified multi-domain dataset access  
 - Faster biodiversity research  
 - Improved analytical accuracy  
 
-## 🏛️ Policymakers
+## Policymakers
 
 - Evidence-based sustainable policies  
 - Fisheries management optimization  
 
-## 🐟 Fishermen & Coastal Communities
+## Fishermen & Coastal Communities
 
 - Species availability forecasting  
 - Sustainable fishing insights  
@@ -178,21 +178,21 @@ Unified platform for:
 
 ---
 
-# 🌱 Economic, Social & Environmental Impact
+# Economic, Social & Environmental Impact
 
-## 💰 Economic
+## Economic
 
 - Reduces research costs  
 - Improves fishing efficiency  
 - Boosts sustainable income  
 
-## 👥 Social
+## Social
 
 - Empowers scientists  
 - Strengthens coastal communities  
 - Enhances knowledge access  
 
-## 🌊 Environmental
+## Environmental
 
 - Early biodiversity loss detection  
 - Protected zone identification  
@@ -200,7 +200,7 @@ Unified platform for:
 
 ---
 
-# 📚 Research & References
+# Research & References
 
 - CMLRE – Centre for Marine Living Resources and Ecology  
   https://www.cmlre.gov.in/
@@ -215,7 +215,7 @@ Unified platform for:
 
 ---
 
-# 🔮 Future Enhancements
+# Future Enhancements
 
 - Real-time satellite data ingestion  
 - Mobile application for fishermen  
@@ -225,7 +225,7 @@ Unified platform for:
 
 ---
 
-# 📌 Repository Structure (Example)
+# Repository Structure (Example)
 
 ```
 
@@ -240,16 +240,16 @@ Unified platform for:
 
 ---
 
-# 🏆 Conclusion
+# Conclusion
 
 Nereida – Clarity from Complexity bridges the gap between marine data silos and actionable intelligence.
 
 By combining:
 
-- 🌊 Oceanographic Data  
-- 🧬 eDNA Analytics  
-- 🤖 Artificial Intelligence  
-- 📊 Interactive Dashboards  
+- Oceanographic Data  
+- eDNA Analytics  
+- Artificial Intelligence  
+- Interactive Dashboards  
 
 We empower researchers, policymakers, and communities to make informed decisions for sustainable marine ecosystems.
 ```
