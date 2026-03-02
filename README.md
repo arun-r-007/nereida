@@ -59,7 +59,7 @@ Nereida transforms this fragmented data into:
 - Forecasts population density  
 - Analyzes long-term ecosystem shifts  
 
-## 🔹 eDNA-Enabled Discovery
+## eDNA-Enabled Discovery
 
 - Detects rare & hidden species  
 - Flags unknown genetic sequences  
