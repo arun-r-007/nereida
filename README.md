@@ -1,6 +1,9 @@
 # Nereida – Clarity from Complexity  
 ## AI-Driven Unified Data Platform for Oceanographic, Fisheries & Molecular Biodiversity Insights
 
+**Live Demo:**  
+[https://arun-r-007.github.io/nereida/](https://arun-r-007.github.io/nereida/)
+
 Nereida is an AI-powered unified marine data platform designed to integrate fragmented oceanographic, fisheries, and molecular biodiversity data into a single intelligent ecosystem.
 
 Marine data is often scattered across:
